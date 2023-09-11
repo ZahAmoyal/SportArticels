@@ -40,7 +40,7 @@ public class BaseTest {
 
 
     public static void setupBrowzer() {
-        System.setProperty("webdriver.chrome.driver", "src/Data/chromedriver1.exe");
+        System.setProperty("webdriver.chrome.driver", "src/Data/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         chromeOptions.addArguments("--headless");

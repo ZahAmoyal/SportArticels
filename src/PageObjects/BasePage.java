@@ -360,7 +360,7 @@ public class BasePage {
 
         mongoDBSport5(countx, author, getTitle(), getSubtitle(), getFullStorySport5(), time(date_time()), date(date_time()), getImagePath(), video);
         //mongoInsertData(countx, author, getTitle(), getSubtitle(), getFullStorySport5(), time(date_time()), date(date_time()), getImagePath(), video);
-        fullStory = "";
+        //fullStory = "";
     }
 
     public void mongoDBSport5(int countx, String author, String title, String subtitle, String fullStory, String time, String date, String image, String video) {
@@ -431,27 +431,30 @@ public class BasePage {
     }
 
     public String getFullStorySport5() {
-        String fullStory = null;
-        boolean exist = false;
-        By articleContent = null;
+        String fullStory = "";
+        boolean exist = true;
+        //By articleContent = null;
         List<WebElement> storyList = Collections.EMPTY_LIST;
-        try {
-            articleContent = By.cssSelector("div.article-content");
-            exist = driver.findElement(articleContent).isDisplayed();
+        WebElement articleContent  =driver.findElement(By.cssSelector("div.article-content"));
+/*        try {
+            //WebElement articleContent =driver.findElement(By.cssSelector("div.article-content"));
+            //exist = driver.findElement(articleContent).isDisplayed();
+            exist = articleContent.isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.println(e);
+            System.out.println(e);*/
             try {
-                if (exist) {
-                    WebElement elementArticleContent = driver.findElement(articleContent);
-                    storyList = elementArticleContent.findElements(By.tagName("p"));
+                if (exist && articleContent.isDisplayed()) {
+                    //WebElement elementArticleContent = driver.findElement(articleContent);
+                    //storyList = elementArticleContent.findElements(By.tagName("p"));
+                    storyList = articleContent.findElements(By.tagName("p"));
+
                 }
                 for (WebElement story : storyList) {
                     fullStory += story.getText() + '\n';
                 }
                 fullStory = fullStory.replace("null", "");
-                return fullStory;
             } catch (NoSuchElementException a) {
-                return fullStory = null;
+                fullStory = null;
         /*if (storyList.size() == 0) {
             List<WebElement> fullStoryList = elementArticleContent.findElements(By.tagName("strong"));
             for (WebElement story : fullStoryList) {
@@ -461,8 +464,8 @@ public class BasePage {
             return fullStory;
         } else {*/
             }
-        }
-        return fullStory = null;
+
+        return fullStory;
     }
 
 
